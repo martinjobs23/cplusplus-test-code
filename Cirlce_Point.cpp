@@ -4,6 +4,9 @@
 //
 //  Created by DFH on 2022/9/6.
 //
+#include <iostream>
+#include<cmath>
+using namespace std;
 
 //class Point {
 //private:
@@ -121,20 +124,27 @@ private://圆心的位置和半径
     double r;
     Point p;
 public://在此设置获取圆心的位置和半径
-    void Set_X(double m) {
+//    void Set_X(double m) {
+//        p.Set_X(m);
+//    }
+//    void Set_Y(double n) {
+//        p.Set_Y(n);
+//    }
+    void SetCenter(double m,double n){
         p.Set_X(m);
-    }
-    void Set_Y(double n) {
         p.Set_Y(n);
     }
     void Set_R(double l) {
         r = l;
     }
-    double Get_X() {
-        return p.Get_X();
-    }
-    double Get_Y() {
-        return p.Get_Y();
+//    double Get_X() {
+//        return p.Get_X();
+//    }
+//    double Get_Y() {
+//        return p.Get_Y();
+//    }
+    Point GetCenter(){
+        return p;
     }
     double Get_R() {
         return r;
@@ -165,8 +175,8 @@ public://在此设置获取圆心的位置和半径
 double GetDis(Point& p, Circle& c) {
     double p_x = p.Get_X();
     double p_y = p.Get_Y();
-    double c_x = c.Get_X();
-    double c_y = c.Get_Y();
+    double c_x = c.GetCenter().Get_X();
+    double c_y = c.GetCenter().Get_Y();
     double dis = sqrt(pow((c_x - p_x), 2) + pow((c_y - p_y), 2));
     return dis;
 }
@@ -186,11 +196,12 @@ int main(int argc, const char* argv[]) {
     // insert code here...
     //std::cout << "Hello, World!\n";
     Circle c1;
-    c1.Set_X(3);
-    c1.Set_Y(4);
+//    c1.Set_X(3);
+//    c1.Set_Y(4);
+    c1.SetCenter(3, 4);
     c1.Set_R(5);
     Point p1;
-    p1.Set_X(-1);  //点（0,0）在圆上
+    p1.Set_X(0);  //点（0,0）在圆上
     p1.Set_Y(0);
     int flag = JudgeByDis(p1, c1);
     int flagc = c1.JudgeByDisInClass(p1);
