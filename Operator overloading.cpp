@@ -5,10 +5,6 @@
 //  Created by DFH on 2022/9/13.
 //
 
-#include <iostream>
-using namespace std;
-#include <string>
-
 //class Person{
 //public:
 //    int m_A;
@@ -116,42 +112,122 @@ using namespace std;
 //    return 0;
 //}
 
-class Person{
+//class Person {
+//public:
+//
+//    int* m_age;
+//    Person(int age) {
+//        m_age = new int(age);
+//    }
+//    Person& operator=(Person& p) {
+//        if (m_age != NULL) {
+//            delete m_age;
+//            m_age = NULL;
+//        }
+//        this->m_age = new int(*p.m_age);
+//        return *this;
+//    }
+//    ~Person() {
+//        if (m_age != NULL) {
+//            delete m_age;
+//            m_age = NULL;
+//        }
+//    }
+//
+//};
+//
+//void test01() {
+//    Person p1(20);
+//    Person p2(30);
+//    Person p3(18);
+//    p2 = p1 = p3;
+//
+//    cout << "p1的年龄为" << *p1.m_age << endl;
+//    cout << "p2的年龄为" << *p2.m_age << endl;
+//    cout << "p3的年龄为" << *p3.m_age << endl;
+//}
+//
+//int main() {
+//    test01();
+//    return 0;
+//}
+
+//class Person {
+//public:
+//	string m_Name;
+//	int age;
+//	Person(string name,int age) {
+//		m_Name = name;
+//		this->age = age;
+//	}
+//	bool operator==(Person &p) {
+//		if (this->m_Name == p.m_Name && this->age == p.age) {
+//			return 1;
+//		}
+//		return 0;
+//	}
+//	bool operator!=(Person& p) {
+//		if (this->m_Name == p.m_Name && this->age == p.age) {
+//			return 0;
+//		}
+//		return 1;
+//	}
+//};
+//
+//void test01() {
+//	Person p1("zhangsan", 20);
+//	Person p2("zhangsan", 20);
+//	if (p1 == p2) {
+//		cout << "p1和p2是相等的。" << endl;
+//	}
+//	else
+//		cout << "两者不相等。" << endl;
+//	if (p1 != p2) {
+//		cout << "p1和p2是不相等的。" << endl;
+//	}
+//	else
+//		cout << "两者相等。" << endl;
+//}
+//int main() {
+//	test01();
+//
+//	return 0;
+//}
+
+class MyPrint {
 public:
-    
-    int *m_age;
-    Person(int age){
-        m_age = new int (age);
-    }
-    Person& operator=(Person &p){
-        if (m_age != NULL) {
-            delete m_age;
-            m_age = NULL;
-        }
-        this->m_age = new int (*p.m_age);
-        return *this;
-    }
-    ~Person(){
-        if(m_age != NULL){
-            delete m_age;
-            m_age = NULL;
-        }
-    }
-    
+	void operator()(string test) {
+		cout << test << endl;
+	}
 };
 
-void test01(){
-    Person p1(20);
-    Person p2(30);
-    Person p3(18);
-    p2 = p1 = p3;
-    
-    cout<<"p1的年龄为"<<*p1.m_age << endl;
-    cout<<"p2的年龄为"<<*p2.m_age << endl;
-    cout<<"p3的年龄为"<<*p3.m_age << endl;
+void MyPrint02(string test) {
+	cout << test << endl;
+
+}
+class MyAdd {
+
+public:
+	int operator()(int num1, int num2) {
+		return num1 + num2;
+	}
+};
+void test01() {
+	MyPrint mp;
+	mp("hello world!");
+	MyPrint02("Hello");
 }
 
-int main(){
-    test01();
-    return 0;
+void test02() {
+	MyAdd ma;
+	cout << ma(100, 200) << endl;
+	cout << MyAdd()(100, 100) << endl;
+
 }
+int main() {
+	test01();
+	test02();
+
+	return 0;
+}
+
